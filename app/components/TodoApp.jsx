@@ -1,3 +1,5 @@
+//This is the component that maintains all the state for the application
+
 var React = require("react");
 var uuid = require("uuid")
 
@@ -11,19 +13,23 @@ var TodoApp = React.createClass({
       todos: [
         {
           id: uuid(),
-          text: "Walk the dog"
+          text: "Walk the dog",
+          completed: false
         },
         {
           id: uuid(),
-          text: "Mow the lawn"
+          text: "Mow the lawn",
+          completed: false
         },
         {
           id: uuid(),
-          text: "Clean the Yard"
+          text: "Clean the Yard",
+          completed: false
         },
         {
           id: uuid(),
-          text: "Do Homework"
+          text: "Do Homework",
+          completed: false
         }
       ],
       searchText: "",
@@ -35,7 +41,8 @@ var TodoApp = React.createClass({
       todos: [
         ...this.state.todos , {
           id: uuid(),
-          text: text
+          text: text,
+          completed: false
         }
       ]
     })
@@ -46,12 +53,22 @@ var TodoApp = React.createClass({
       searchText: searchText.toLowerCase()
     });
   },
+  handleToggle: function(id){
+    var updatedTodos = this.state.todos.map((todo) => {
+      if(todo.id === id){
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    this.setState({todos: updatedTodos});
+  },
   render: function(){
     var {todos} = this.state;
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch}/>
-        <TodoList todos={todos}/>
+        <TodoList onToggle = {this.handleToggle} todos={todos}/>
         <TodoForm onAddTodo={this.handleAddTodo}/>
       </div>
     )

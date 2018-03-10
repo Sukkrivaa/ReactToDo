@@ -23,9 +23,6 @@ describe("TodoSearch", () => {
   });
 
 
-
-
-
   it("should call onSearch when the show-completed checkbox is changed", () => {
     var spy = expect.createSpy();
     var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);

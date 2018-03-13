@@ -59,7 +59,7 @@ describe("TodoApp", () => {
     todoApp.setState({todos: [todoData]});
 
     todoApp.handleToggle(11);
-    expect(todoApp.state.todos[0].completedAt).toBe(undefined);
+    expect(todoApp.state.todos[0].completedAt).toNotExist();
   });
 
 });

@@ -11,7 +11,7 @@ var TodoSearch = React.createClass({
   render: function(){
     //Returns a search bar where if we type something or click the textbox, the handlesearch function will be called
     return (
-      <div>
+      <div className="container__header">
         <div>
           <input type="search" ref="searchText" placeholder="Search todos" onChange={this.handleSearch}/>
         </div>

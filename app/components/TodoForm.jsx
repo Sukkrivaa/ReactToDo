@@ -14,7 +14,7 @@ module.exports = React.createClass({
   render: function(){
     //Renders an input where the user can type stuff and submit it, which the trigger the onSubmit function
     return(
-      <div>
+      <div className="container__footer">
         <form onSubmit={this.onSubmit}>
           <input type="text" placeholder="Add Todo" ref="addTodo"/>
           <button className= "button expanded" >Add Todo</button>

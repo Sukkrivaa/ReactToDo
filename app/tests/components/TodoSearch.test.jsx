@@ -27,7 +27,7 @@ describe("TodoSearch", () => {
     var spy = expect.createSpy();
     var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy}/>);
 
-    todoSearch.refs.showCompleted.checked = true;
+    todoSearch.refs.showCompleted.checked = true; //Need to set the value first - kink with TestUtils
     TestUtils.Simulate.change(todoSearch.refs.showCompleted); //Will only run the function when this happens
 
     expect(spy).toHaveBeenCalledWith(true,"");

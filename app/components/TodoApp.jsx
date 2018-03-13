@@ -1,5 +1,5 @@
 //This is the component that maintains all the state for the application
-
+//Basically the big component that maintains all the state for the whole application
 var React = require("react");
 var uuid = require("uuid")
 
@@ -9,6 +9,7 @@ var TodoSearch = require("TodoSearch");
 
 var TodoApp = React.createClass({
   getInitialState: function(){
+    //All the info the app needs is stored on the state
     return {
       todos: [
         {
@@ -37,6 +38,7 @@ var TodoApp = React.createClass({
     };
   },
   handleAddTodo: function(text){
+    //Adds a new todo to the array that the todos state property points to
     this.setState({
       todos: [
         ...this.state.todos , {
@@ -48,12 +50,14 @@ var TodoApp = React.createClass({
     })
   },
   handleSearch: function(showCompleted, searchText){
+    //Decides what to show
     this.setState({
       showCompleted: showCompleted,
       searchText: searchText.toLowerCase()
     });
   },
   handleToggle: function(id){
+    //Changes the completed state of the todo with the corresponding id
     var updatedTodos = this.state.todos.map((todo) => {
       if(todo.id === id){
         todo.completed = !todo.completed;

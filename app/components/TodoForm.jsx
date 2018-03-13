@@ -12,6 +12,7 @@ module.exports = React.createClass({
     }
   },
   render: function(){
+    //Renders an input where the user can type stuff and submit it, which the trigger the onSubmit function
     return(
       <div>
         <form onSubmit={this.onSubmit}>

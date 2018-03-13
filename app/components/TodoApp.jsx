@@ -1,8 +1,8 @@
 //This is the component that maintains all the state for the application
 //Basically the big component that maintains all the state for the whole application
 var React = require("react");
-var uuid = require("uuid")
-
+var uuid = require("uuid");
+var moment = require("moment");
 
 var TodoApi = require("TodoApi");
 var TodoList = require("TodoList");
@@ -28,7 +28,9 @@ var TodoApp = React.createClass({
         ...this.state.todos , {
           id: uuid(),
           text: text,
-          completed: false
+          completed: false,
+          createdAt: moment().unix(),
+          completedAt: undefined
         }
       ]
     })
@@ -45,6 +47,7 @@ var TodoApp = React.createClass({
     var updatedTodos = this.state.todos.map((todo) => {
       if(todo.id === id){
         todo.completed = !todo.completed;
+        todo.completedAt = todo.completed ? moment().unix() : undefined;
       }
       return todo;
     });

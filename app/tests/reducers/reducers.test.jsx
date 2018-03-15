@@ -67,6 +67,9 @@ describe("Reducers", () => {
     expect(res[1].completed).toBe(true);
     expect(res[1].completedAt).toBeA("number");
 
+    res = reducers.todosReducer(df(res), df(action));
+    expect(res[1].completed).toBe(false);
+    expect(res[1].completedAt).toNotExist();
     });
 
   });

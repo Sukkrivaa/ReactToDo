@@ -1,12 +1,12 @@
 var uuid = require("uuid");
 var moment = require("moment");
 
-export var searchTextReducer = (state = "", action) => {
+export var searchTextReducer = (state= "", action) => {
   switch(action.type) {
     case "SET_SEARCH_TEXT":
       return action.searchText;
     default:
-      state;
+      return state;
   }
 }
 

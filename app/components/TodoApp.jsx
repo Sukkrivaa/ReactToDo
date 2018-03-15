@@ -13,13 +13,13 @@ var TodoApp = React.createClass({
   getInitialState: function(){
     //All the info the app needs is stored on the state
     return {
-      todos: TodoApi.getTodos(),
+      todos: TodoApi.getTodos(), //Get Todos from the local storage
       searchText: "",
       showCompleted: false
     };
   },
   componentDidUpdate: function (){
-    TodoApi.setTodos(this.state.todos);
+    TodoApi.setTodos(this.state.todos); //Send the refreshed todos to the localstorage
   },
   handleAddTodo: function(text){
     //Adds a new todo to the array that the todos state property points to
@@ -55,8 +55,9 @@ var TodoApp = React.createClass({
     this.setState({todos: updatedTodos});
   },
   render: function(){
+    //Runs everytime the state refreshes (just like componentDidUpdate) - but for visual rendering purposes only
     var {todos, showCompleted, searchText} = this.state;
-    var filteredTodos = TodoApi.filterTodos(todos, showCompleted, searchText);
+    var filteredTodos = TodoApi.filterTodos(todos, showCompleted, searchText); //Will show selected todos based on how we filter them
     return (
       <div>
         <h1 className="page-title">Todo App</h1>

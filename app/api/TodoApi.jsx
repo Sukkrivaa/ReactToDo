@@ -41,7 +41,7 @@ module.exports = {
 
     //Sort by non-completed first
       filteredTodos.sort((a,b) => {
-        if(!a.completed && b.completed === true){
+        if(!a.completed && b.completed){
           return -1;
         }else if(a.completed && !b.completed){
           return 1

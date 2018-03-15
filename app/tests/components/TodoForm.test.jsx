@@ -13,7 +13,7 @@ describe("TodoForm", () => {
   });
 
   it("should call the function that is passed down to it with valid data", () => {
-    var spy = expect.createSpy();
+    var spy = expect.createSpy(); //Substitute for anAddTodo
     var todoForm = TestUtils.renderIntoDocument(<TodoForm onAddTodo={spy}/>)
 
     var $el = $(ReactDOM.findDOMNode(todoForm));

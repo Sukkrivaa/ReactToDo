@@ -16,7 +16,7 @@ describe("TodoSearch", () => {
     var spy = expect.createSpy();
     var todoSearch = TestUtils.renderIntoDocument(<TodoSearch onSearch={spy} />);
 
-    todoSearch.refs.searchText.value = SearchText;
+    todoSearch.refs.searchText.value = SearchText; //Need to set the value first
     TestUtils.Simulate.change(todoSearch.refs.searchText);
 
     expect(spy).toHaveBeenCalledWith(false, "Dog");

@@ -11,7 +11,7 @@ describe("Todo", () => {
       expect(Todo).toExist();
   });
 
-  it("should call onToggle when id onClick", () => {
+  it("should call onToggle with id onClick", () => {
     var spy = expect.createSpy();
     var todoData = {
       id: 131,

@@ -6,6 +6,8 @@ describe("TodoApi", () => {
   beforeEach(() => {
     localStorage.removeItem("todos");
   });
+
+
   it("should exist", () => {
     expect(TodoApi).toExist();
   });
@@ -79,7 +81,7 @@ describe("TodoApi", () => {
     expect(filteredTodos.length).toBe(3);
   });
 
-  it("should return only showCompleted-false items if showCompleted is false", () => {
+  it("should return only completed-false items if showCompleted is false", () => {
     var filteredTodos = TodoApi.filterTodos(todos, false, "");
     expect(filteredTodos.length).toBe(1);
   });

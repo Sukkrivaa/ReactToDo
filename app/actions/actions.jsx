@@ -1,3 +1,5 @@
+//Actions consist of the type and info needed to carry out the action
+
 export var setSearchText = (text) => {
   return {
     type: "SET_SEARCH_TEXT",

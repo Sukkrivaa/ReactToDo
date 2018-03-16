@@ -5,9 +5,9 @@ var uuid = require("uuid");
 var moment = require("moment");
 
 var TodoApi = require("TodoApi");
-var TodoList = require("TodoList");
-var TodoForm = require("TodoForm");
-var TodoSearch = require("TodoSearch");
+import TodoList from "TodoList";
+import TodoForm from "TodoForm";
+import TodoSearch from "TodoSearch"; 
 
 var TodoApp = React.createClass({
   getInitialState: function(){
@@ -21,38 +21,12 @@ var TodoApp = React.createClass({
   componentDidUpdate: function (){
     TodoApi.setTodos(this.state.todos); //Send the refreshed todos to the localstorage
   },
-  handleAddTodo: function(text){
-    //Adds a new todo to the array that the todos state property points to
-    this.setState({
-      todos: [
-        ...this.state.todos , {
-          id: uuid(),
-          text: text,
-          completed: false,
-          createdAt: moment().unix(),
-          completedAt: undefined
-        }
-      ]
-    })
-  },
   handleSearch: function(showCompleted, searchText){
     //Decides what to show
     this.setState({
       showCompleted: showCompleted,
       searchText: searchText.toLowerCase()
     });
-  },
-  handleToggle: function(id){
-    //Changes the completed state of the todo with the corresponding id
-    var updatedTodos = this.state.todos.map((todo) => {
-      if(todo.id === id){
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : undefined;
-      }
-      return todo;
-    });
-
-    this.setState({todos: updatedTodos});
   },
   render: function(){
     //Runs everytime the state refreshes (just like componentDidUpdate) - but for visual rendering purposes only
@@ -65,8 +39,8 @@ var TodoApp = React.createClass({
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container">
               <TodoSearch onSearch={this.handleSearch}/>
-              <TodoList onToggle = {this.handleToggle} todos={filteredTodos}/>
-              <TodoForm onAddTodo={this.handleAddTodo}/>
+              <TodoList />
+              <TodoForm />
             </div>
           </div>
         </div>

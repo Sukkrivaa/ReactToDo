@@ -1,8 +1,12 @@
 var React = require("react");
-var Todo = require("Todo");
-var TodoList = React.createClass({
+import Todo from "Todo";
+var {connect} = require("react-redux");
+var TodoApi = require("TodoApi");
+
+
+export var TodoList = React.createClass({
   render: function (){
-    var {todos} = this.props;
+    var {todos, showCompleted, searchText} = this.props;
 
     var renderTodos = () => {
       if(todos.length == 0){
@@ -10,9 +14,9 @@ var TodoList = React.createClass({
           <p className="container__message">Nothing To Do</p>
         )
       }
-      return todos.map((todo) => {
+      return TodoApi.filterTodos(todos, showCompleted, searchText).map((todo) => {
         return(
-          <Todo key={todo.id} {...todo} onToggle = {this.props.onToggle}/>
+          <Todo key={todo.id} {...todo} />
           //We need the key because we are rendering an array
         )
       })
@@ -25,4 +29,8 @@ var TodoList = React.createClass({
   }
 });
 
-module.exports = TodoList
+export default connect(
+  (state) => {
+    return state;
+  }
+)(TodoList);

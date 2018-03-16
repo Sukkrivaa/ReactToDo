@@ -33,7 +33,7 @@ module.exports = {
         if(searchText.length == 0){
           return true;
         }else{
-          return todo.text.toLowerCase().indexOf(searchText) !== -1;
+          return todo.text.toLowerCase().indexOf(searchText.toLowerCase()) !== -1;
         }
       });
 

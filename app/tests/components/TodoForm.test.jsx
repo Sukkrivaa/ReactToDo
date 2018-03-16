@@ -4,7 +4,7 @@ var $ = require("jQuery");
 var expect = require("expect");
 var TestUtils = require("react-addons-test-utils");
 
-var TodoForm = require("TodoForm");
+var {TodoForm} = require("TodoForm");
 
 
 describe("TodoForm", () => {
@@ -12,21 +12,25 @@ describe("TodoForm", () => {
     expect(TodoForm).toExist();
   });
 
-  it("should call the function that is passed down to it with valid data", () => {
-    var spy = expect.createSpy(); //Substitute for anAddTodo
-    var todoForm = TestUtils.renderIntoDocument(<TodoForm onAddTodo={spy}/>)
+  it("should dispatch ADD_TODO when there is valid text", () => {
+    var spy = expect.createSpy();
+    var action = {
+      type: "ADD_TODO",
+      text: "Hello"
+    } //Substitute for anAddTodo
+    var todoForm = TestUtils.renderIntoDocument(<TodoForm dispatch={spy}/>)
 
     var $el = $(ReactDOM.findDOMNode(todoForm));
     todoForm.refs.addTodo.value = "Hello";
     TestUtils.Simulate.submit($el.find("form")[0]);
 
-    expect(spy).toHaveBeenCalledWith("Hello")
+    expect(spy).toHaveBeenCalledWith(action)
 
   });
 
-  it("should not call the function that is passed down to it with invalid data", () => {
+  it("should not dispatch ADD_TODO when invalid todo text", () => {
     var spy = expect.createSpy();
-    var todoForm = TestUtils.renderIntoDocument(<TodoForm onAddTodo={spy}/>)
+    var todoForm = TestUtils.renderIntoDocument(<TodoForm dispatch={spy}/>)
 
     var $el = $(ReactDOM.findDOMNode(todoForm));
     todoForm.refs.addTodo.value = "";

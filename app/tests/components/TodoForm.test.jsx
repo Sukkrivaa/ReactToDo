@@ -4,6 +4,7 @@ var $ = require("jQuery");
 var expect = require("expect");
 var TestUtils = require("react-addons-test-utils");
 
+//Don't need the connected component because we are not checking if it renders connected subcomponents
 var {TodoForm} = require("TodoForm");
 
 

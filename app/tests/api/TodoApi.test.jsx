@@ -3,6 +3,7 @@ var expect = require("expect");
 var TodoApi = require("TodoApi");
 
 describe("TodoApi", () => {
+  //For testing purposes after every test we want to clear the localStorage
   beforeEach(() => {
     localStorage.removeItem("todos");
   });
@@ -13,6 +14,7 @@ describe("TodoApi", () => {
   });
 
   describe("setTodos", () => {
+    //Must test different types of good cases and bad cases
       it("should set valid todos array", () => {
         var todos = [{
           id: 23,
@@ -35,7 +37,7 @@ describe("TodoApi", () => {
   });
 
   describe("getTodos", () => {
-    it("should return an empty array for bad localstorage data", () => {
+    it("should return an empty array for bad/empty localstorage data", () => {
       var actualTodos = TodoApi.getTodos();
       expect(actualTodos).toEqual([]);
     });
@@ -50,6 +52,7 @@ describe("TodoApi", () => {
       localStorage.setItem("todos", JSON.stringify(todos));
       var actualTodos = TodoApi.getTodos();
 
+      //Checking to see if there is no mutation of data
       expect(actualTodos).toEqual(todos);
     });
 
@@ -86,7 +89,7 @@ describe("TodoApi", () => {
     expect(filteredTodos.length).toBe(1);
   });
 
-  it("should sort by completed function" , () => {
+  it("should sort by completed function (incomplete first)" , () => {
     var filteredTodos = TodoApi.filterTodos(todos,true,"");
     expect(filteredTodos[0].completed).toBe(false);
   })
@@ -94,11 +97,6 @@ describe("TodoApi", () => {
   it("should filter by searchText if the searchText is valid", () => {
     var filteredTodos = TodoApi.filterTodos(todos,true,"other");
     expect(filteredTodos[0].text).toBe("Other text here");
-  });
-
-  it("should not filter by searchText if the searchText is invalid", () => {
-    var filteredTodos = TodoApi.filterTodos(todos,true,"");
-    expect(filteredTodos.length).toBe(3);
   });
 
   });

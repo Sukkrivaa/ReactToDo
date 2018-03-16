@@ -29,7 +29,7 @@ describe("TodoSearch", () => {
   it("should dispatch TOGGLE_SHOW_COMPLETED when the checkbox is checked", () => {
     var spy = expect.createSpy();
     var todoSearch = TestUtils.renderIntoDocument(<TodoSearch dispatch={spy}/>);
-
+    //Even for a checkbox, the Simulation is change, not click - this is because we have set the dispatch to run only on change
     todoSearch.refs.showCompleted.checked = true; //Need to set the value first - kink with TestUtils
     TestUtils.Simulate.change(todoSearch.refs.showCompleted); //Will only run the function when this happens
 

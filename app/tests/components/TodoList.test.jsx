@@ -10,15 +10,18 @@ import ConnectedTodo, {Todo} from "Todo";
 
 describe("TodoList", () => {
   it("should exist", () => {
-      expect(TodoList).toExist();
+      expect(ConnectedTodoList).toExist();
   });
 
+  //Just like when testing TodoApp, we test if TodoList renders connected Todos - for that, we need the Provider
   it("should render 1 connected todo component for each todo item passes to it", () => {
     var todos = [{id:1, text:"doSomething", completed: false, completedAt: undefined, createdAt: 500},{id:2, text:"doSomethingElse",completed: false, completedAt: undefined, createdAt: 500}];
     var store = configure({
       todos
     });
 
+    //We do this basically because to test if something is connected or not, we see if they have a connection to the store.
+    //So we make a store with state that we manually put in
     var provider = TestUtils.renderIntoDocument(
       <Provider store={store}>
         <ConnectedTodoList/>

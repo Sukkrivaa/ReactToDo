@@ -14,6 +14,7 @@ describe("TodoApp", () => {
       expect(TodoApp).toExist();
   });
 
+// This is how we test if something is connected --- We render the component in our test and compare it with the connected version
   it("should render connected TodoList", () => {
     var store = configureStore.configure();
     var provider = TestUtils.renderIntoDocument(

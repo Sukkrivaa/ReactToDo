@@ -1,52 +1,33 @@
-//This is the component that maintains all the state for the application
-//Basically the big component that maintains all the state for the whole application
+//This is the main component
 var React = require("react");
-var uuid = require("uuid");
-var moment = require("moment");
+// Not Needed anymore because we have moved this functionality to the reducers, which handle ALL changing of state
+// var uuid = require("uuid");
+// var moment = require("moment");
 
-var TodoApi = require("TodoApi");
 import TodoList from "TodoList";
+//We use import instead of require because we have used export default (Therefor there is no need for a named import) to our connected components
+  //Our connected components are the ones that can change the state and get info from the state
 import TodoForm from "TodoForm";
-import TodoSearch from "TodoSearch"; 
+import TodoSearch from "TodoSearch";
 
 var TodoApp = React.createClass({
-  getInitialState: function(){
-    //All the info the app needs is stored on the state
-    return {
-      todos: TodoApi.getTodos(), //Get Todos from the local storage
-      searchText: "",
-      showCompleted: false
-    };
-  },
-  componentDidUpdate: function (){
-    TodoApi.setTodos(this.state.todos); //Send the refreshed todos to the localstorage
-  },
-  handleSearch: function(showCompleted, searchText){
-    //Decides what to show
-    this.setState({
-      showCompleted: showCompleted,
-      searchText: searchText.toLowerCase()
-    });
-  },
   render: function(){
     //Runs everytime the state refreshes (just like componentDidUpdate) - but for visual rendering purposes only
-    var {todos, showCompleted, searchText} = this.state;
-    var filteredTodos = TodoApi.filterTodos(todos, showCompleted, searchText); //Will show selected todos based on how we filter them
-    return (
+    //We use foundation styles and custom classes
       <div>
         <h1 className="page-title">Todo App</h1>
         <div className="row">
           <div className="column small-centered small-11 medium-6 large-5">
             <div className="container">
-              <TodoSearch onSearch={this.handleSearch}/>
+              <TodoSearch />
               <TodoList />
               <TodoForm />
             </div>
           </div>
         </div>
       </div>
-    )
   }
 });
+//Note that because we have no need to pass down info or functions, we can simply call the JSX as above - Thus, the code is highly reusable
 
 module.exports = TodoApp

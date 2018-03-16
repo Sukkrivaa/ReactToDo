@@ -2,10 +2,12 @@ var React = require("react");
 var {connect} = require("react-redux");
 var actions = require("actions");
 
+//Note that searchText and showCompleted are part of the state and we use them to filter the Todos using the TodoApi.filterTodos() method
+//Ideally, since you want the render function do directly do one thing, we should have split the searchbar and the checkbox
 export var TodoSearch = React.createClass({
   render: function(){
     var {dispatch, showCompleted, searchText} = this.props
-    //Returns a search bar where if we type something or click the textbox, the handlesearch function will be called
+    //We put in a default searchText in case the localStorage has a default
     return (
       <div className="container__header">
         <div>
@@ -28,6 +30,7 @@ export var TodoSearch = React.createClass({
 });
 
 export default connect((state) => {
+  //Instead of getting the whole state, we have only gotten the things we want
   return {
     showCompleted : state.showCompleted,
     searchText: state.searchText

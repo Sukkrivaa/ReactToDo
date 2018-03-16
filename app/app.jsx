@@ -29,7 +29,7 @@ store.subscribe(() => {
 
 var InitialTodos = TodoApi.getTodos();
 //In the case that there are already Todos in the localStorage when we first open the app
-store.dispatch(action.addTodos(initialTodos));
+store.dispatch(actions.addTodos(InitialTodos));
 //We immediately add the initial todos to our state (since our state is empty at first (as set by the default values of the reducers))
 
 
